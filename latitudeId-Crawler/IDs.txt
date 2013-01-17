@@ -1,0 +1,17 @@
+http://latitude.google.com/latitude/apps/badge/api?user=&type=iframe
+http://latitude.google.com/latitude/apps/badge/api?user=&type=iframe
+http://latitude.google.com/latitude/apps/badge/api?user=&type=iframe
+http://latitude.google.com/latitude/apps/badge/api?user=&type=iframe
+http://latitude.google.com/latitude/apps/badge/api?user=-######meineID##&type=iframe
+http://latitude.google.com/latitude/apps/badge/api?user=-######meineID##&type=iframe
+http://latitude.google.com/latitude/apps/badge/api?user=-######meineID##&type=iframe
+http://latitude.google.com/latitude/apps/badge/api?user=xxxxxxxxxxxxxxxxxxx&type=iframe
+http://latitude.google.com/latitude/apps/badge/api?user=xxxxxxxxxxxxxxxxxxx&type=iframe
+http://latitude.google.com/latitude/apps/badge/api?user=xxxxxxxxxxxxxxxxxxx&type=iframe
+http://latitude.google.com/latitude/apps/badge/api?user=xxxxxxxxxxxxxxxxxxx&type=iframe
+http://latitude.google.com/latitude/apps/badge/api?user=xxxxxxxxxxxxxxxxx&type=iframe
+http://latitude.google.com/latitude/apps/badge/api?user=-2429745840348101348&type=iframe
+http://latitude.google.com/latitude/apps/badge/api?user=-2429745840348101348&type=iframe
+http://latitude.google.com/latitude/apps/badge/api?user=-2429745840348101348&type=iframe
+http://latitude.google.com/latitude/apps/badge/api?user=-2429745840348101348&type=iframe
+http://latitude.google.com/latitude/apps/badge/api?user=-2429745840348101348&type=iframe
