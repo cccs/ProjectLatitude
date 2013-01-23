@@ -27,7 +27,7 @@ def updateLatitudeData(destdir, userid):
     filename = "%s/%s.json" % (dirname, timestamp)
     if not os.path.isfile(filename):
         f = open(filename, 'w')
-        f.write(r.text)
+        f.write(r.text.encode('utf8'))
 
 
 parser = argparse.ArgumentParser(description="Download latest latitude data of given users.")
