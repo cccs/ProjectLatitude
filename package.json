@@ -1,0 +1,8 @@
+{
+  "name": "Project-Latitude",
+  "version": "0.0.1",
+  "dependencies": {
+    "express": "3.x"
+  },
+  "engine": "node 0.6.19"
+}

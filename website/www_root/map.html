@@ -1,0 +1,22 @@
+
+
+<html><body onload="start()">
+  <div id="mapdiv"></div>
+  <script src="http://www.openlayers.org/api/OpenLayers.js"></script>
+  <script src="./js/maplib.js"></script>
+  <script>
+  var map;
+  function start(){
+    map = createMap("mapdiv");
+    
+
+    map.setPosition(9.5788, 48.9773);  
+
+    //map.drawMarker(9.5788, 48.9773);
+	var animation = createAnimationObject(map);
+	animation.addWaypoint(createWaypoint(0,9.5788, 48.978,1,1));
+	animation.addWaypoint(createWaypoint(0,9.5788, 48.9773,1,1));
+	animation.drawStateAt(1);
+}
+  </script>
+</body></html>
