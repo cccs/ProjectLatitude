@@ -84,9 +84,14 @@ function createAnimationObject(mapobject){
 			}
 		});
 
-		for (var w in way){
+		for (var w in way){ //for every persons way
 			if(isArray(way[w])){
-				this.map.drawWay(way[w]);
+				way[w].sort(function(a,b){ //sort
+					return a.timestamp - b.timestamp; 
+				});
+				
+				this.map.drawWay(way[w]); //Draw it on map
+			
 			}
 		}
 		return this;

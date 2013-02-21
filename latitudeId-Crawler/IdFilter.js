@@ -7,9 +7,8 @@ getIDsFromURL = function(url, callback, onEnd){
 	});
 }
 
-
 getIDsFromHTML = function(htmlString, callback, onEnd){
-	var regex = /latitude\.google\.com\/latitude\/apps\/badge\/api\?user=([^&]*)&/g //extracting IDs via regex
+	var regex = /google\.com\/latitude\/apps\/badge\/api\?user=([^&]*)&/g //extracting IDs via regex
 	var result = regex.exec(htmlString);
 	while (result != null) {
 		if(result[1] != null){

@@ -1,18 +1,28 @@
 
 
-<html><body onload="start()">
+<html><body>
   <div id="mapdiv"></div>
   <script src="http://www.openlayers.org/api/OpenLayers.js"></script>
+  <!-- Load now-functionality --><script type="text/javascript" src="./nowjs/now.js"></script>
+  <!-- load latest jquery --><script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
   <script src="./js/maplib.js"></script>
   <script>
   var map;
+  now.ready(function(){
+    start();
+  });
+
+  //Receives a new User from Server. user.latitudeId
+  now.receiveUser(user){
+
+  }
+
   function start(){
     map = createMap("mapdiv");
     
-
     map.setPosition(9.5788, 48.9773);  
 
-    //map.drawMarker(9.5788, 48.9773);
+  //map.drawMarker(9.5788, 48.9773);
 	var animation = createAnimationObject(map);
 	animation.addWaypoint(createWaypoint(0,9.5788, 48.978,1,1));
 	animation.addWaypoint(createWaypoint(0,9.5788, 48.9773,1,1));
