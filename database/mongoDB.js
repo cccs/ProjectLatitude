@@ -94,6 +94,7 @@ function closeDBConnection(db){
 	db.close();
 }
 
+
 function insertDocumentIntoWaypointData(doc){
 	var config = nodeConfig.get('database');
 	var db = connectToDB();
@@ -103,7 +104,7 @@ function insertDocumentIntoWaypointData(doc){
 
 function insertDocument(doc, intoCollection, db){
 	var collection = db.collection(intoCollection);
-	collection.save(doc);	
+	collection.insert(doc);	
 }
 
 //Returns Array with inherited Features

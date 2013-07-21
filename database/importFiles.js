@@ -2,10 +2,20 @@ var mongoDB = require('./mongoDB.js')
 var fs = require('fs');
 
 function importFromDirectory(dir){
+var output = 'var sixtusGeodata = [';
 walk(dir, function(file, stat){
-	mongoDB.insertWaypoint(readDataFromFile(file));
-}, function(){});
+    output += JSON.stringify(readDataFromFile(file));
+    output += ',';
+    //console.log(readDataFromFile(file)+',');
+	//mongoDB.insertWaypoint(readDataFromFile(file));
+}, function(){
+    output = output.substring(0,output.length - 1);
+    output += '];';
+    console.log(output);
+});
 }
+
+
 
 function readDataFromFile(filename){
 	var parsedJSON = require(filename);
