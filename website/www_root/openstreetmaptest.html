@@ -54,11 +54,10 @@ function playWay(inSeconds){
     if(getTimestamp(sixtusWaypoints[0])<time){
       addWaypoint2Map();
     }
-  },25);
-}
+  },2500);}
 
 function addWaypoint2Map(){
-  map.drawWaypoint(sixtusWaypoints.shift());
+  return map.drawWaypoint(sixtusWaypoints.shift());
 }
 
   function start(){
@@ -78,6 +77,23 @@ async.series([
 	//animation.addWaypoint(createWaypoint(0,9.5788, 48.9773,1,1));
 	
  // animation.drawStateAt(10000000);
+}
+
+function loadScript(url, callback)
+{
+    // adding the script tag to the head as suggested before
+   var head = document.getElementsByTagName('head')[0];
+   var script = document.createElement('script');
+   script.type = 'text/javascript';
+   script.src = url;
+
+   // then bind the event to the callback function 
+   // there are several events for cross browser compatibility
+   script.onreadystatechange = callback;
+   script.onload = callback;
+
+   // fire the loading
+   head.appendChild(script);
 }
   </script>
 </body></html>
