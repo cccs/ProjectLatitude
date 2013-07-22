@@ -2,7 +2,7 @@
 var waypoints = [];
 var allWaypoints = [];
 var mapCenter = {latitude: 0, longitude: 0};
-var geoDataUrl = 'sixtusGeoData.js';
+var geoDataUrl = 'geoData.js';
 var scope;
 
 (function () {
@@ -24,11 +24,11 @@ function getTimestamp(fromWaypoint){
 function loadWaypoints(){
 	loadScript(geoDataUrl, function(){
 	var waypoints = [];
-	var length = sixtusGeodata.length,
+	var length = geodata.length,
     element = null;
 	for (var i = 0; i < length; i++) {
 		var waypoint = {};
-		element = sixtusGeodata[i];
+		element = geodata[i];
 		waypoint.longitude = element.features[0].geometry.coordinates[0];
 		waypoint.latitude = element.features[0].geometry.coordinates[1];
 		waypoints.push(waypoint);

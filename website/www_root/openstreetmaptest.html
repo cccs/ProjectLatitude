@@ -18,18 +18,18 @@
 
   //}
 var animation;
-var geoDataUrl = 'sixtusGeoData.js';
+var geoDataUrl = 'geoData.js';
 
 var sixtusWaypoints = [];
 
 function loadWaypoints(callback){
   loadScript(geoDataUrl, function(){
   var waypoints = [];
-  var length = sixtusGeodata.length,
+  var length = geodata.length,
   element = null;
   for (var i = 0; i < length; i++) {
     var waypoint = {};
-    element = sixtusGeodata[i];
+    element = geodata[i];
     //map.drawWaypoint(element);
     waypoints.push(element);
     //sixtusWaypoints.push(element);
