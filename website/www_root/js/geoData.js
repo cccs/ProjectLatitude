@@ -4,6 +4,18 @@ function GeoData(waypointData){
   //this.stats.FastestActualizationInterval = 0;
   //this.stats.BiggestActualizationGap = 0;
 
+  //start and end Time are Timestamps 
+  this.getWaypointsBetween = function(startTime, endTime){
+    var ret = [];
+    var length = waypoints.length;
+    for(var i = 0, i<length;i++){
+      var element = waypoints[i];
+      var time = getTimestamp(element);
+      if(time>startTime && time > endTime)ret.push(element);
+    }
+    return ret;
+  }
+
     var calcStatistics = function(stats){
       var fastestActualization = 0;
       var biggestActualizationGap = 0;
