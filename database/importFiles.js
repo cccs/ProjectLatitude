@@ -1,25 +1,52 @@
 var mongoDB = require('./mongoDB.js')
 var fs = require('fs');
+var async = require('async');
 
 function importFromDirectory(dir){
 var output = 'var sixtusGeodata = [';
+fs.readdir(dir, function(err, list) {
+    //async.mapSeries(list, readDataFromFile, function(err, results){})
+    list.forEach(function(file){
+    var data = "";
+    try{
+        data = readDataFromFile(dir+'/'+file);
+        }catch(error){
+        data = "";
+    }
+    if(data != ""){
+    output += '\n';
+    output += JSON.stringify(data);
+    output += ',';
+    }
+    });
+
+    output = output.substring(0,output.length - 1);
+    output += '\n];';
+    console.log(output);
+
+    
+});
+
+/*
 walk(dir, function(file, stat){
+    output += '\n';
     output += JSON.stringify(readDataFromFile(file));
     output += ',';
     //console.log(readDataFromFile(file)+',');
 	//mongoDB.insertWaypoint(readDataFromFile(file));
 }, function(){
-    output = output.substring(0,output.length - 1);
-    output += '];';
+    output = output.substring(0,output.length - 2);
+    output += '\n];';
     console.log(output);
 });
+*/
 }
 
 
 
 function readDataFromFile(filename){
 	var parsedJSON = require(filename);
-	return parsedJSON;
+    return parsedJSON;
 }
 
 /**

@@ -1,0 +1,22 @@
+
+
+<html><body>
+  <div id="output"></div>
+  <script src="sixtusGeoData.js"></script>
+  <script src="./js/geoData.js"></script>
+  <style type="text/css">
+  p {
+    width: 100%;
+  }
+  </style>
+  <script>
+
+  	function out(text){
+  		document.writeln("<p>"+text+"</p>");
+	}
+
+	var geoData = new GeoData(sixtusGeodata);
+  out("SixtusGeoData Stats: "+JSON.stringify(geoData.stats) + " (sec)");
+  //out("calcAverageActualizationTime: "+(geoData.calcAverageActualizationTime()/60) + " (min)" );
+  </script>
+</body></html>

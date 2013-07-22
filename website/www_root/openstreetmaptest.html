@@ -1,0 +1,83 @@
+
+
+<html><body>
+  <div id="mapdiv"></div>
+  <script src="http://www.openlayers.org/api/OpenLayers.js"></script>
+  <!-- Load now-functionality --><!---<script type="text/javascript" src="./nowjs/now.js"></script>-->
+  <!-- load latest jquery --><script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script type="text/javascript" src="./js/lib/async.js"></script>
+  <script src="./js/openstreetmapcontroller.js"></script>
+  <script>
+  var map;
+  $(document).ready(function(){//now.ready(function(){
+    start();
+  });
+
+  //Receives a new User from Server. user.latitudeId
+  //now.receiveUser(user){
+
+  //}
+var animation;
+var geoDataUrl = 'sixtusGeoData.js';
+
+var sixtusWaypoints = [];
+
+function loadWaypoints(callback){
+  loadScript(geoDataUrl, function(){
+  var waypoints = [];
+  var length = sixtusGeodata.length,
+  element = null;
+  for (var i = 0; i < length; i++) {
+    var waypoint = {};
+    element = sixtusGeodata[i];
+    //map.drawWaypoint(element);
+    waypoints.push(element);
+    //sixtusWaypoints.push(element);
+  }
+  
+  callback(waypoints);
+  });
+}
+
+function getTimestamp(fromWaypoint){
+  return fromWaypoint.features[0].properties.timeStamp;
+}
+
+
+function playWay(inSeconds){
+  var begin = getTimestamp(sixtusWaypoints[0]);
+  var timespan = getTimestamp(sixtusWaypoints[sixtusWaypoints.length-1]) - begin;
+  var timestep = (timespan/(inSeconds*1000))*25;
+  var time = begin;
+  window.setInterval(function(){
+    time += timestep;
+    if(getTimestamp(sixtusWaypoints[0])<time){
+      addWaypoint2Map();
+    }
+  },25);
+}
+
+function addWaypoint2Map(){
+  map.drawWaypoint(sixtusWaypoints.shift());
+}
+
+  function start(){
+    map = createMap("mapdiv");
+    
+    map.setPosition(13.4127433, 52.5268753);  
+
+async.series([
+    loadWaypoints(function(waypoints){sixtusWaypoints = waypoints;
+      playWay(110);})
+  ]);
+
+  //map.drawMarker(9.5788, 48.9773);
+  //animation = createAnimationObject(map);
+  
+	//animation.addWaypoint(createWaypoint(0,9.5788, 48.978,1,1));
+	//animation.addWaypoint(createWaypoint(0,9.5788, 48.9773,1,1));
+	
+ // animation.drawStateAt(10000000);
+}
+  </script>
+</body></html>
