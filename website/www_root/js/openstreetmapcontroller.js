@@ -1,6 +1,29 @@
 
+/**
+ * Erklärung zur Darstellung von Overlays: http://docs.openlayers.org/library/overlays.html#overlays
+*/
+
 function createMap(mapdivID){
 	var map = {};
+
+	//Stores every displayed Marker:
+	var markers = {};
+
+	var waypointStyles = new OpenLayers.StyleMap({
+                "default": new OpenLayers.Style({
+                    pointRadius: "${type}", // sized according to type attribute
+                    fillColor: "#ffcc66",
+                    strokeColor: "#ff9933",
+                    strokeWidth: 2,
+                    graphicZIndex: 1
+                }),
+                "select": new OpenLayers.Style({
+                    fillColor: "#66ccff",
+                    strokeColor: "#3399ff",
+                    graphicZIndex: 2
+                })
+            });
+
 
 	map.createLonLat = function(longitude, latitude){
 		return new OpenLayers.LonLat( longitude, latitude )
@@ -10,7 +33,25 @@ function createMap(mapdivID){
           );
 	}
 
+	map.deleteWaypoint = function(waypoint){
+		this.deleteMarker(getWaypointMarker(waypoint));
+	}
+
+	map.deleteMarker = function(marker){
+		points.removeFeatures(marker);
+	}
+
 	map.drawMarker = function(longitude, latitude){
+		var feature = new OpenLayers.Feature.Vector(
+		map.point(longitude, latitude),
+		{
+            type: 5
+        });
+		points.addFeatures(feature);
+
+		return feature;
+		//map.map.addLayer(points);
+		/*
 		var lonLat = this.createLonLat(longitude, latitude);
 
 		var markers = new OpenLayers.Layer.Markers( "Markers" );
@@ -18,6 +59,7 @@ function createMap(mapdivID){
 	    
 	    markers.addMarker(new OpenLayers.Marker(lonLat));
 		return this;
+		*/
 	}
 
 	map.drawLine = function(startPoint, endPoint){
@@ -27,8 +69,27 @@ function createMap(mapdivID){
 		return this;
 	}
 
+	function generateWaypointID(waypoint){
+		var longitude = getLongitude(waypoint);
+		var latitude = getLatitude(waypoint);
+		//The unique ID of a waypoint is his Position:
+		return ""+longitude+","+latitude+"";
+	}
+
+	function saveWaypointMarker(waypoint){
+		markers[generateWaypointID(waypoint)] = waypoint;
+	}
+
+	function getWaypointMarker(waypoint){
+		return markers[generateWaypointID(waypoint)];
+	}
+
 	map.drawWaypoint = function(waypoint){
-		this.drawMarker(getLongitude(waypoint), getLatitude(waypoint));
+		var longitude = getLongitude(waypoint);
+		var latitude = getLatitude(waypoint);
+		var ret = this.drawMarker(longitude, latitude);
+		saveWaypointMarker(waypoint);
+		return ret;
 	}
 
 	/**
@@ -56,9 +117,23 @@ function createMap(mapdivID){
     this.map.setCenter (lonLat, this.zoom);
 	}
 
+
+
 	map.map = new OpenLayers.Map(mapdivID);
 	map.map.addLayer(new OpenLayers.Layer.OSM());
 	map.zoom = 11;
+
+	//The private Variable, which stores the shown Waypoints
+	var points = new OpenLayers.Layer.Vector("Points", {
+                styleMap: waypointStyles,
+                rendererOptions: {zIndexing: true}
+            });
+	map.map.addLayer(points);
+
+
+	//var select = new OpenLayers.Control.SelectFeature(points, {hover: true});
+   // map.map.addControl(select);
+    //select.activate();
 
 return map;
 }
@@ -78,19 +153,3 @@ function isArray(value){
 
 
 
-function loadScript(url, callback)
-{
-    // adding the script tag to the head as suggested before
-   var head = document.getElementsByTagName('head')[0];
-   var script = document.createElement('script');
-   script.type = 'text/javascript';
-   script.src = url;
-
-   // then bind the event to the callback function 
-   // there are several events for cross browser compatibility
-   script.onreadystatechange = callback;
-   script.onload = callback;
-
-   // fire the loading
-   head.appendChild(script);
-}
