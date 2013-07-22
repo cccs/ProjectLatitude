@@ -8,7 +8,7 @@ function GeoData(waypointData){
   this.getWaypointsBetween = function(startTime, endTime){
     var ret = [];
     var length = waypoints.length;
-    for(var i = 0, i<length;i++){
+    for(var i = 0; i<length;i++){
       var element = waypoints[i];
       var time = getTimestamp(element);
       if(time>startTime && time > endTime)ret.push(element);
