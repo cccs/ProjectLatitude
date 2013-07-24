@@ -112,16 +112,16 @@ function createMap(mapdivID){
 	}
 
 	map.setPosition = function(longitude, latitude){
-	var lonLat = this.createLonLat( longitude, latitude );
+		var lonLat = this.createLonLat( longitude, latitude );
 
-    this.map.setCenter (lonLat, this.zoom);
+	    this.map.setCenter (lonLat, this.zoom);
 	}
 
 
 
 	map.map = new OpenLayers.Map(mapdivID);
 	map.map.addLayer(new OpenLayers.Layer.OSM());
-	map.zoom = 11;
+	map.zoom = 5;
 
 	//The private Variable, which stores the shown Waypoints
 	var points = new OpenLayers.Layer.Vector("Points", {
@@ -136,15 +136,6 @@ function createMap(mapdivID){
     //select.activate();
 
 return map;
-}
-
-
-function getLongitude(fromWaypoint){
-		return fromWaypoint.features[0].geometry.coordinates[0];
-	}
-
-function getLatitude(fromWaypoint){
-		return fromWaypoint.features[0].geometry.coordinates[1];
 }
 
 function isArray(value){
