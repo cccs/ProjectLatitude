@@ -1,0 +1,46 @@
+
+<html lang="de" ng-app="OpenStreetMap">
+<head>
+<meta charset="utf-8">
+<title>Waypoint Data Visualization with OpenStreetMaps</title>
+<link rel="stylesheet" type="text/css" href="css/topcoat-desktop-light.css">
+<script src="js/lib/angular.js"></script>
+<script src="js/openstreetmapapp.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="js/geoData.js"></script>
+<script src="js/openstreetmap.js"></script>
+
+  <script src="http://www.openlayers.org/api/OpenLayers.js"></script>
+</head>
+
+<body ng-controller="MapCtrl">
+  <div class="topcoat-navigation-bar">
+    <div class="topcoat-navigation-bar__item left quarter">
+      <span ng-show="menuVisible">Import GPX-WaypointData</span>
+    </div>
+
+    <div class="topcoat-navigation-bar__item center half">
+    <h1 class="topcoat-navigation-bar__title">Waypoint Data Visualization with OpenStreetMaps</h1>
+    </div>
+
+    <div class="topcoat-navigation-bar__item right quarter">
+      <a class="topcoat-icon-button--large" ng-click="toggleMenu()">
+      <span class="topcoat-icon--large topcoat-icon--menu-stack"></span>
+      </a>
+    </div>
+  </div>
+  <div class="menu" ng-show="menuVisible">
+    <a class="topcoat-button" ng-click="importGPXDataCtrl()">Import</a>
+    <!--<input type="file" ng-model="inputFile" />-->
+    <textarea class="topcoat-textarea" ng-model="inputFile">
+    </textarea>
+    <div class="tracklist" ng-repeat="track in tracklist">
+      <input type="text" class="topcoat-text-input--large" ng-Model="track.name" placeholder="text">
+    </div>
+  </div>
+  <div id="mapdiv"></div>
+
+  <script>
+
+  </script>
+</body></html>
